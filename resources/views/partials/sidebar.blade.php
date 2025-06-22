@@ -5,6 +5,7 @@
     <a href="{{ route('materis.index') }}" class="{{ request()->is('materis*') ? 'active' : '' }}">Materi</a>
     <a href="{{ route('soals.index') }}" class="{{ request()->is('soals*') ? 'active' : '' }}">Soal</a>
     <a href="{{ route('ujian.index') }}" class="{{ request()->is('ujian*') ? 'active' : '' }}">Ujian</a>
+    <a href="{{ route('logout') }}" >Logout</a>
     
     <!-- Tambah menu lainnya di sini -->
 </div>

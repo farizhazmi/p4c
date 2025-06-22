@@ -115,7 +115,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login.portal') }}">
+    <form method="POST" action="{{ route('portal.doLogin') }}">
         @csrf
         <div class="form-group">
             <label for="email">Email</label>

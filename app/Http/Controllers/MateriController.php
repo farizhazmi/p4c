@@ -25,7 +25,7 @@ class MateriController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'attachment' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,jpg,jpeg,png|max:2048',
+            'attachment' => 'nullable|file|mimes:pdf|max:5048',
             'guru_id' => 'required|exists:users,id',
         ]);
 
@@ -63,7 +63,7 @@ class MateriController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'attachment' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,jpg,jpeg,png|max:2048',
+            'attachment' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,jpg,jpeg,png|max:5048',
             'guru_id' => 'required|exists:users,id',
         ]);
 

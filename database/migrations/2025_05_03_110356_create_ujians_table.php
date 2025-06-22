@@ -24,7 +24,6 @@ return new class extends Migration
             $table->integer('kkm')->nullable();
             $table->timestamps();
 
-            $table->foreign('materi_id')->references('id')->on('materis')->onDelete('cascade');
         });
     }
 

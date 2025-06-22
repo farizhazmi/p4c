@@ -1,0 +1,140 @@
+.box-item .thumb img {width: 100%;}
+
+.box-item .wrap-details {padding: 15px;}
+
+.box-item {/* border: 1px solid; */}
+
+.box-item .wrap-details h5 {font-size: 1rem;margin-bottom: 6px; line-height: 23px;}
+
+.box-item .wrap-details .user-area {display: flex;}
+
+.box-item .wrap-details .user-area .user-rating {margin-left: auto;}
+
+.box-item .wrap-details .user-area .user-details a {color: #595959;text-decoration: none;font-size: .8rem;}
+
+.box-item .wrap-details .user-area .user-rating i {color: #ff7943;font-size: 1.1rem;}
+
+.box-item .wrap-details h5 a {text-decoration: none;color: #000;transition: .9s;}
+
+.item-course {border: 1px solid #f4f4f4;text-align: center;padding: 16px; margin-bottom: 20px;}
+
+.item-course h5 {font-weight: bold;font-size: 1rem;margin-bottom: 5px;}
+
+.item-course p {margin: 0; font-size: .85rem;}
+.box-item .wrap-details .price {font-size: 1rem;padding: 10px 0;font-weight: bold;}
+.box-item {
+    margin-bottom: 20px;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    background: #fff;
+}
+.box-item .wrap-details a:hover {
+    color: #737373;
+}
+.btn-cta-custom {
+    background: #1ab69d;
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 16px;
+    border: none;
+}
+.btn-cta-custom:hover{
+    color: #fff !important;
+    background-color: #29a894;
+}
+
+.discuss-item-header img {
+    width: 40px;
+    height: 40px;
+}
+
+.discuss-item-header {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.discuss-item-header .username {
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.discuss-item-body p {margin-bottom: 0;font-size: 14px;}
+
+.discuss-item.mentor .discuss-item-header {
+}
+
+.discuss-item.mentor .discuss-item-body {
+    text-align: left;
+}
+
+.discuss-item.student {
+    background: #fff;
+}
+
+.discuss-item.student .discuss-item-body {
+    text-align: right;
+}
+
+.discussion .discuss-item {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #cbcbcb;
+}
+
+.discuss-item-header .discuss-info span.comment-date {
+    font-size: 11px;
+    margin-top: 2px;
+    display: block;
+}
+
+.discuss-item.mentor .discuss-item-header .discuss-info {
+    padding-left: 10px;
+    text-align: left;
+}
+
+.discuss-item.student .discuss-item-header .discuss-info {
+    padding-right: 10px;
+    text-align: right;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+.nav-tabs button {
+    font-size: 16px;
+    color: #000 !important;
+}
+
+.nav-tabs button:hover{
+    color: #000 !important;
+}
+
+.tab-content {
+    margin-top: 10px;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.discuss-item.student .discuss-item-header {
+    justify-content: flex-end;
+}
+
+.wrapper-progress {
+    width: 100%;
+    height: 5px;
+    background: #e5e5e5;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.wrapper-progress span.progress-value {
+    background: #ffa406;
+    height: 5px;
+    display: block;
+    border-radius: 5px;
+}

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->unsignedBigInteger('guru_id'); // foreign key ke users
             $table->timestamps();
 
-            $table->foreign('guru_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

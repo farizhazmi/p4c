@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ujian;
 use App\Models\Materi;
+use App\Models\Soal;
+use App\Models\UjianDetail;
 use Illuminate\Http\Request;
 
 class UjianController extends Controller
@@ -33,7 +35,7 @@ class UjianController extends Controller
             'kkm' => 'required|integer',
         ]);
 
-        Ujian::create([
+        $ujian = Ujian::create([
             'nama_ujian' => $request->nama_ujian,
             'deskripsi' => $request->deskripsi,
             'materi_id' => $request->materi_id,
@@ -42,6 +44,19 @@ class UjianController extends Controller
             'kkm' => $request->kkm,
         ]);
 
+        $soals = Soal::where('materi_id', '=', $request->materi_id)->get();
+        if(sizeof($soals) > 0){
+            foreach($soals as $i => $soal){
+                UjianDetail::create(
+                    [
+                        'ujian_id' => $ujian->id,
+                        'soal_id' => $soal->id,
+                        'pertanyaan' => $soal->pertanyaan 
+                    ]
+                );
+            }
+        }
+        
         return redirect()->route('ujian.index')->with('success', 'Ujian berhasil ditambahkan!');
     }
 

@@ -22,11 +22,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/portal', [PortalController::class, 'showLoginForm'])->name('portal.login');
-Route::post('/login', [PortalController::class, 'doLogin'])->name('login.portal');
-Route::get('/portal-siswa', [PortalController::class, 'index'])->name('portal.index');
+Route::get('/', [PortalController::class, 'showLoginForm'])->name('siswa.login');
+Route::post('/portal/login', [PortalController::class, 'doLogin'])->name('portal.doLogin');
+Route::get('/portal/dashboard', [PortalController::class, 'index'])->name('portal.dashboard');
+Route::get('/portal/exam', [PortalController::class, 'exam'])->name('portal.exam');
+Route::get('/portal/start/{ujian_id}', [PortalController::class, 'start'])->name('portal.start');
+Route::post('/portal/start/submit/{ujian_id}', [PortalController::class, 'examSubmit'])->name('portal.start.submit');
 
 
 

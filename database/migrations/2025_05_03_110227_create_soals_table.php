@@ -23,7 +23,6 @@ return new class extends Migration
             $table->enum('jenis', ['essay', 'pilgan'])->default('essay');
             $table->timestamps();
 
-            $table->foreign('materi_id')->references('id')->on('materis')->onDelete('cascade');
         });
     }
 
