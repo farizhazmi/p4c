@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2025 at 08:08 AM
+-- Generation Time: Jun 22, 2025 at 06:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -40,18 +40,50 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jawaban_ujians`
+-- Table structure for table `hasil_ujians`
 --
 
-CREATE TABLE `jawaban_ujians` (
+CREATE TABLE `hasil_ujians` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `ujian_id` bigint(20) UNSIGNED NOT NULL,
-  `soal_id` bigint(20) UNSIGNED NOT NULL,
-  `jawaban_siswa` varchar(255) NOT NULL,
-  `benar` tinyint(1) NOT NULL DEFAULT 0,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `materi_id` bigint(20) UNSIGNED NOT NULL,
+  `total_nilai` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `hasil_ujians`
+--
+
+INSERT INTO `hasil_ujians` (`id`, `ujian_id`, `user_id`, `materi_id`, `total_nilai`, `created_at`, `updated_at`) VALUES
+(2, 3, 2, 1, 150, '2025-06-21 21:08:01', '2025-06-21 21:08:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hasil_ujian_details`
+--
+
+CREATE TABLE `hasil_ujian_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `hasil_ujian_id` bigint(20) UNSIGNED NOT NULL,
+  `pertanyaan` text NOT NULL DEFAULT '1',
+  `jawaban` text NOT NULL DEFAULT '1',
+  `nilai` int(11) NOT NULL,
+  `alasan` text NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `hasil_ujian_details`
+--
+
+INSERT INTO `hasil_ujian_details` (`id`, `hasil_ujian_id`, `pertanyaan`, `jawaban`, `nilai`, `alasan`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Jelaskan latar belakang dibentuknya BPUPKI oleh Jepang dan siapa saja tokoh penting di dalamnya!', 'BPUPKI dibentuk oleh Jepang pada tanggal 29 April 1945', 65, 'Jawaban menyebutkan tanggal pembentukan BPUPKI oleh Jepang. Namun kurang lengkap. Seharusnya, jawaban ideal mencakup:\n\n1.  **Latar Belakang Pembentukan:**\n *   Kekalahan Jepang dalam Perang Pasifik dan upaya menarik simpati bangsa Indonesia.\n *   Janji Jepang untuk memberikan kemerdekaan sebagai siasat politik.\n *   Kondisi sosial-politik dan ekonomi Indonesia saat itu.\n\n2.  **Tokoh Penting:**\n *   Menyebutkan ketua BPUPKI (Dr. K.R.T. Radjiman Wedyodiningrat) dan wakil ketua (Ichibangase Yosio dan R.P. Soeroso).\n *   Menyebutkan beberapa tokoh penting lainnya seperti Soekarno, Hatta, Muhammad Yamin, Soepomo, dan lainnya (walaupun tidak mungkin menyebutkan semuanya).\n\n3. Detail proses pembentukan (janji jepang direalisasikan pada tanggal 29 April 1945 bertepatan dengan hari ulang tahun Kaisar Hirohito.)', '2025-06-21 21:08:09', '2025-06-21 21:08:09'),
+(2, 2, 'Sebutkan rumusan dasar negara versi Ir. Soekarno dan peran Panitia Sembilan dalam pembentukan Piagam Jakarta!', 'Rumusan dasar negara versi Ir. Soekarno yang disampaikan pada 1 Juni 1945 meliputi:\r\n\r\n    Kebangsaan Indonesia,\r\n\r\n    Internasionalisme atau peri kemanusiaan,\r\n\r\n    Mufakat atau demokrasi,\r\n\r\n    Kesejahteraan sosial, dan\r\n\r\n    Ketuhanan yang berkebudayaan.\r\n    Panitia Sembilan, yang dibentuk setelah sidang pertama BPUPKI, bertugas menyusun rumusan dasar negara dan berhasil merumuskan Piagam Jakarta pada 22 Juni 1945 yang menjadi cikal bakal Pembukaan UUD 1945.', 85, 'Jawaban telah menyebutkan dengan tepat rumusan dasar negara versi Ir. Soekarno dan peran Panitia Sembilan dalam menghasilkan Piagam Jakarta. Namun, bisa ditingkatkan dengan memberikan sedikit detail tambahan mengenai bagaimana Piagam Jakarta menjadi cikal bakal Pembukaan UUD 1945 dan poin-poin utama dalam piagam tersebut (meskipun tidak diminta secara spesifik).', '2025-06-21 21:08:16', '2025-06-21 21:08:16');
 
 -- --------------------------------------------------------
 
@@ -74,7 +106,7 @@ CREATE TABLE `materis` (
 --
 
 INSERT INTO `materis` (`id`, `judul`, `deskripsi`, `attachment`, `guru_id`, `created_at`, `updated_at`) VALUES
-(1, 'Matematika Dasar', 'Operasi dasar matematika', NULL, 1, '2025-05-11 06:26:56', '2025-05-11 06:26:56');
+(1, 'PKn SD', 'PKn SD', 'materi/1750562036_kelas-7-ppkn-bs-press-compressed.pdf', 1, '2025-06-21 19:35:59', '2025-06-21 20:13:56');
 
 -- --------------------------------------------------------
 
@@ -93,15 +125,17 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(37, '2014_10_12_000000_create_users_table', 1),
-(38, '2014_10_12_100000_create_password_resets_table', 1),
-(39, '2019_08_19_000000_create_failed_jobs_table', 1),
-(40, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(41, '2025_05_03_105955_add_role_to_users_table', 1),
-(42, '2025_05_03_110125_create_materis_table', 1),
-(43, '2025_05_03_110227_create_soals_table', 1),
-(44, '2025_05_03_110356_create_ujians_table', 1),
-(45, '2025_05_03_110513_create_jawaban_ujians_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2025_05_03_105955_add_role_to_users_table', 1),
+(6, '2025_05_03_110125_create_materis_table', 1),
+(7, '2025_05_03_110227_create_soals_table', 1),
+(8, '2025_05_03_110356_create_ujians_table', 1),
+(9, '2025_06_22_013635_create_hasil_ujians_table', 1),
+(10, '2025_06_22_014449_create_hasil_ujian_details_table', 1),
+(11, '2025_06_22_020733_create_ujian_details_table', 1);
 
 -- --------------------------------------------------------
 
@@ -156,9 +190,8 @@ CREATE TABLE `soals` (
 --
 
 INSERT INTO `soals` (`id`, `materi_id`, `pertanyaan`, `pilihan`, `jawaban_benar`, `jenis`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Berapakah 2 + 2?', '\"{\\\"A\\\":\\\"3\\\",\\\"B\\\":\\\"4\\\",\\\"C\\\":\\\"5\\\",\\\"D\\\":\\\"6\\\"}\"', 'B', 'essay', '2025-05-11 06:26:56', '2025-05-11 06:26:56'),
-(2, 1, 'Berapakah 5 - 3?', '\"{\\\"A\\\":\\\"1\\\",\\\"B\\\":\\\"2\\\",\\\"C\\\":\\\"3\\\",\\\"D\\\":\\\"4\\\"}\"', 'B', 'essay', '2025-05-11 06:26:56', '2025-05-11 06:26:56'),
-(3, 1, 'Berapakah 3 x 3?', '\"{\\\"A\\\":\\\"6\\\",\\\"B\\\":\\\"7\\\",\\\"C\\\":\\\"8\\\",\\\"D\\\":\\\"9\\\"}\"', 'D', 'essay', '2025-05-11 06:26:56', '2025-05-11 06:26:56');
+(1, 1, 'Jelaskan latar belakang dibentuknya BPUPKI oleh Jepang dan siapa saja tokoh penting di dalamnya!', '\"{\\\"A\\\":\\\"3\\\",\\\"B\\\":\\\"4\\\",\\\"C\\\":\\\"5\\\",\\\"D\\\":\\\"6\\\"}\"', 'B', 'essay', '2025-06-21 19:35:59', '2025-06-21 20:14:59'),
+(2, 1, 'Sebutkan rumusan dasar negara versi Ir. Soekarno dan peran Panitia Sembilan dalam pembentukan Piagam Jakarta!', '\"{\\\"A\\\":\\\"1\\\",\\\"B\\\":\\\"2\\\",\\\"C\\\":\\\"3\\\",\\\"D\\\":\\\"4\\\"}\"', 'B', 'essay', '2025-06-21 19:35:59', '2025-06-21 20:15:08');
 
 -- --------------------------------------------------------
 
@@ -183,7 +216,33 @@ CREATE TABLE `ujians` (
 --
 
 INSERT INTO `ujians` (`id`, `nama_ujian`, `deskripsi`, `materi_id`, `waktu_mulai`, `waktu_selesai`, `kkm`, `created_at`, `updated_at`) VALUES
-(2, 'ujian uts', 'test', 1, '2025-05-07 14:20:00', '2025-05-13 14:26:00', 70, '2025-05-11 07:20:51', '2025-05-11 07:20:51');
+(3, 'Latihan PPKn 2', 'Latihan PPKn 2', 1, '2025-06-21 18:01:00', '2025-06-21 20:03:00', 75, '2025-06-21 20:26:02', '2025-06-21 20:26:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ujian_details`
+--
+
+CREATE TABLE `ujian_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `ujian_id` bigint(20) UNSIGNED NOT NULL,
+  `soal_id` bigint(20) UNSIGNED NOT NULL,
+  `pertanyaan` text NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ujian_details`
+--
+
+INSERT INTO `ujian_details` (`id`, `ujian_id`, `soal_id`, `pertanyaan`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'Berapakah 2 + 2?', '2025-06-21 20:06:42', '2025-06-21 20:06:42'),
+(2, 2, 2, 'Berapakah 5 - 3?', '2025-06-21 20:06:42', '2025-06-21 20:06:42'),
+(3, 2, 3, 'Berapakah 3 x 3?', '2025-06-21 20:06:42', '2025-06-21 20:06:42'),
+(4, 3, 1, 'Jelaskan latar belakang dibentuknya BPUPKI oleh Jepang dan siapa saja tokoh penting di dalamnya!', '2025-06-21 20:26:02', '2025-06-21 20:26:02'),
+(5, 3, 2, 'Sebutkan rumusan dasar negara versi Ir. Soekarno dan peran Panitia Sembilan dalam pembentukan Piagam Jakarta!', '2025-06-21 20:26:02', '2025-06-21 20:26:02');
 
 -- --------------------------------------------------------
 
@@ -208,8 +267,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(1, 'Pak Guru', 'guru@example.com', NULL, '$2y$10$Pcaers8RYWFCh64h/t4H6uPVAGsXp1VU5id/nmBcQ0SDfFSqASnkW', NULL, '2025-05-11 06:26:56', '2025-05-11 06:26:56', 'guru'),
-(2, 'Budi Siswa', 'siswa@example.com', NULL, '$2y$10$AU8NNPZGXucXOz/ztuSYcuKGXycLN/9nzdpTLM7oRSi8lp7pNMhIK', NULL, '2025-05-11 06:26:56', '2025-05-11 06:26:56', 'siswa');
+(1, 'Pak Guru', 'guru@example.com', NULL, '$2y$10$B8fpzb.VJkwsG1mCUAFhQ.HyUV13LWWXM3EvJyQ3ykxQG7O.9eNV2', NULL, '2025-06-21 19:35:59', '2025-06-21 19:35:59', 'guru'),
+(2, 'Budi Siswa', 'siswa@example.com', NULL, '$2y$10$unKTnuMWZ9sGME3Ed.FtJO0ogzZcIQPsgtxUnkjOMVwkklSAUZjYe', NULL, '2025-06-21 19:35:59', '2025-06-21 19:35:59', 'siswa');
 
 --
 -- Indexes for dumped tables
@@ -223,19 +282,22 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `jawaban_ujians`
+-- Indexes for table `hasil_ujians`
 --
-ALTER TABLE `jawaban_ujians`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `jawaban_ujians_ujian_id_foreign` (`ujian_id`),
-  ADD KEY `jawaban_ujians_soal_id_foreign` (`soal_id`);
+ALTER TABLE `hasil_ujians`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hasil_ujian_details`
+--
+ALTER TABLE `hasil_ujian_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `materis`
 --
 ALTER TABLE `materis`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `materis_guru_id_foreign` (`guru_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -261,15 +323,19 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `soals`
 --
 ALTER TABLE `soals`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `soals_materi_id_foreign` (`materi_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ujians`
 --
 ALTER TABLE `ujians`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `ujians_materi_id_foreign` (`materi_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ujian_details`
+--
+ALTER TABLE `ujian_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -289,10 +355,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jawaban_ujians`
+-- AUTO_INCREMENT for table `hasil_ujians`
 --
-ALTER TABLE `jawaban_ujians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `hasil_ujians`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `hasil_ujian_details`
+--
+ALTER TABLE `hasil_ujian_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `materis`
@@ -304,7 +376,7 @@ ALTER TABLE `materis`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -316,7 +388,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `soals`
 --
 ALTER TABLE `soals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ujians`
@@ -325,39 +397,16 @@ ALTER TABLE `ujians`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `ujian_details`
+--
+ALTER TABLE `ujian_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `jawaban_ujians`
---
-ALTER TABLE `jawaban_ujians`
-  ADD CONSTRAINT `jawaban_ujians_soal_id_foreign` FOREIGN KEY (`soal_id`) REFERENCES `soals` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `jawaban_ujians_ujian_id_foreign` FOREIGN KEY (`ujian_id`) REFERENCES `ujians` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `materis`
---
-ALTER TABLE `materis`
-  ADD CONSTRAINT `materis_guru_id_foreign` FOREIGN KEY (`guru_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `soals`
---
-ALTER TABLE `soals`
-  ADD CONSTRAINT `soals_materi_id_foreign` FOREIGN KEY (`materi_id`) REFERENCES `materis` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `ujians`
---
-ALTER TABLE `ujians`
-  ADD CONSTRAINT `ujians_materi_id_foreign` FOREIGN KEY (`materi_id`) REFERENCES `materis` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
